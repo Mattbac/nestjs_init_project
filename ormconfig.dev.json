@@ -1,0 +1,18 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 8090,
+    "username": "root",
+    "password": "root",
+    "database": "project",
+    "entities": [
+        "dist/**/*.entity.js"
+    ],
+    "synchronize": false,
+    "migrations": [
+        "dist/database/migrations/*.js"
+    ],
+    "cli": {
+        "migrationsDir": "database/migrations"
+    }
+  }
