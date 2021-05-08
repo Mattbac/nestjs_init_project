@@ -10,7 +10,7 @@ import { RoleType } from '../../type/role-type';
 @UseInterceptors(
   ClassSerializerInterceptor
 )
-@Roles(RoleType.ADMIN)
+@Roles(RoleType.SUP_ADMIN)
 @Controller('api/users')
 export class UsersController {
   constructor(

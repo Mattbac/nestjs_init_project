@@ -1,11 +1,11 @@
 version: "3"
 
 networks:
-  altiscorm:
+  project:
     driver: bridge
 
 services:
-  mysql-altiscorm:
+  mysql-project:
     build: mysql/
     ports:
       - ${PORT_LOCAL_MYSQL}:${INTERNAL_PORT_MYSQL:-3306}
@@ -16,5 +16,5 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     networks:
-      altiscorm: {}
+      project: {}
 
