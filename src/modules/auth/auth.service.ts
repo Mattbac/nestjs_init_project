@@ -30,7 +30,7 @@ export class AuthService {
             access_token: this.jwtService.sign({
                 id: user.id,
                 username: user.email,
-                authorities: [RoleType.ADMIN]
+                authorities: user.roles.map(role => role.name)
             }),
         };
     }

@@ -10,9 +10,10 @@
     ],
     "synchronize": false,
     "migrations": [
-        "dist/database/migrations/*.js"
+        "dist/database/migrations/*.js",
+        "dist/database/seeds/*.js"
     ],
     "cli": {
-        "migrationsDir": "database/migrations"
+        "migrationsDir": "src/database/migrations"
     }
   }

@@ -14,8 +14,6 @@ export class UsersService {
   ) {}
 
   async create(user: CreateUser) {
-    const password = await bcrypt.hash(user.password, 10);
-    user.password = password;
     return this.usersRepository.save(user);
   }
 
@@ -46,7 +44,6 @@ export class UsersService {
   }
 
   async update(id: number, user: UpdateUser) {
-    if (!!user.password) user.password = await bcrypt.hash(user.password, 10);
     this.usersRepository.update(id, user);
     return this.findOne(id);
   }

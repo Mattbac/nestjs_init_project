@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, BeforeInsert } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { PartialType } from '@nestjs/mapped-types';
+import * as bcrypt from 'bcrypt';
 
-import { RoleType } from 'src/type/role-type';
+import { Role } from '../roles/role.entity';
 
 @Entity({ name: 'users'})
 export class User {
@@ -15,19 +16,23 @@ export class User {
   })
   email: string;
 
-  @Column({
-    type: 'varchar'
-  })
-  role: RoleType;
+  @ManyToMany(() => Role, { eager: true })
+  @JoinTable()
+  roles: Role[];
 
   @Exclude()
   @Column()
   password: string;
+
+  @BeforeInsert()
+  async setPassword(password: string) {
+    this.password = await bcrypt.hash(password || this.password, 10)
+  }
 }
 
 export class CreateUser {
   email: string;
-  role: RoleType;
+  roles: Role[];
   password: string;
 }
 
